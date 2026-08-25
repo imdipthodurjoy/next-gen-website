@@ -2811,3 +2811,32 @@ html {
 }
 
 
+.developer-photo {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-height: 320px !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.developer-photo img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 300px !important;
+    height: 300px !important;
+    min-width: 300px !important;
+    min-height: 300px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 50% !important;
+    border: 5px solid rgba(168, 85, 247, 0.7) !important;
+    background: #10061b !important;
+    box-shadow:
+        0 0 30px rgba(168, 85, 247, 0.45),
+        0 0 80px rgba(124, 58, 237, 0.25) !important;
+    position: relative !important;
+    z-index: 20 !important;
+}
