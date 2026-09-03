@@ -2811,32 +2811,801 @@ html {
 }
 
 
-.developer-photo {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    min-height: 320px !important;
-    position: relative !important;
-    z-index: 10 !important;
+
+
+
+
+
+
+
+
+
+/* =================================
+   PREMIUM 3D TEAM SECTION
+================================= */
+
+.team-premium {
+    position: relative;
+    width: 100%;
+    min-height: 460px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(168, 85, 247, 0.18),
+            transparent 35%
+        ),
+        #0b0716;
+
+    perspective: 1400px;
 }
 
-.developer-photo img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    width: 300px !important;
-    height: 300px !important;
-    min-width: 300px !important;
-    min-height: 300px !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    border-radius: 50% !important;
-    border: 5px solid rgba(168, 85, 247, 0.7) !important;
-    background: #10061b !important;
+/* Grid */
+
+.team-grid-bg {
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(168, 85, 247, 0.07) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(168, 85, 247, 0.07) 1px,
+            transparent 1px
+        );
+
+    background-size: 55px 55px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 25%,
+        black 75%,
+        transparent
+    );
+
+    transform:
+        perspective(700px)
+        rotateX(60deg)
+        scale(1.5);
+
+    transform-origin: center bottom;
+
+    opacity: 0.45;
+}
+
+/* Content */
+
+.team-content {
+    position: relative;
+    z-index: 5;
+
+    max-width: 850px;
+
+    text-align: center;
+
+    transform-style: preserve-3d;
+
+    
+}
+
+/* Label */
+
+.team-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    color: #b879ff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.team-label span {
+    width: 35px;
+    height: 1px;
+
+    background: #a855f7;
+}
+
+/* Heading */
+
+.team-content h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: clamp(50px, 7vw, 95px);
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    text-shadow:
+        0 10px 40px rgba(199, 194, 204, 0.25);
+
+    transform: translateZ(80px);
+}
+
+.team-content h2 strong {
+    display: block;
+
+    color: transparent;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #481f71,
+            #522280,
+            #ffffff
+        );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    animation: gradientMove 5s linear infinite;
+}
+
+/* Description */
+
+.team-content p {
+    max-width: 580px;
+
+    margin: 30px auto;
+
+    color: #bfb9cc;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    transform: translateZ(50px);
+}
+
+/* Button */
+
+.team-see-btn {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 15px 30px;
+
+    border: 1px solid rgba(69, 23, 115, 0.5);
+
+    border-radius: 50px;
+
+    background: rgba(168, 85, 247, 0.12);
+
+    backdrop-filter: blur(15px);
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    overflow: hidden;
+
+    transform: translateZ(70px);
+
+    transition: 0.4s ease;
+}
+
+.team-see-btn::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.25),
+            transparent
+        );
+
+    transition: 0.6s;
+}
+
+.team-see-btn:hover::before {
+    left: 100%;
+}
+
+.team-see-btn:hover {
+    background: #7741a9;
+
+    border-color: #7640ac;
+
     box-shadow:
-        0 0 30px rgba(168, 85, 247, 0.45),
-        0 0 80px rgba(124, 58, 237, 0.25) !important;
-    position: relative !important;
-    z-index: 20 !important;
+        0 0 35px rgba(90, 52, 126, 0.45);
+
+    transform:
+        translateZ(90px)
+        translateY(-4px);
+}
+
+.team-see-btn i {
+    transition: 0.3s;
+}
+
+.team-see-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* =================================
+   FLOATING 3D ORBS
+================================= */
+
+.floating-orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    filter: blur(1px);
+
+    box-shadow:
+        inset -15px -15px 30px rgba(0,0,0,0.4),
+        inset 10px 10px 25px rgba(255,255,255,0.12),
+        0 0 50px rgba(168,85,247,0.25);
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #d8b4fe,
+            #9333ea 45%,
+            #2e1065 75%
+        );
+}
+
+.orb-one {
+    width: 90px;
+    height: 90px;
+
+    left: 12%;
+    top: 20%;
+
+    animation: orbOne 7s ease-in-out infinite;
+}
+
+.orb-two {
+    width: 45px;
+    height: 45px;
+
+    right: 18%;
+    top: 25%;
+
+    animation: orbTwo 5s ease-in-out infinite;
+}
+
+.orb-three {
+    width: 65px;
+    height: 65px;
+
+    right: 10%;
+    bottom: 18%;
+
+    animation: orbThree 8s ease-in-out infinite;
+}
+
+/* =================================
+   ANIMATIONS
+================================= */
+
+@keyframes contentFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotateX(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-8px)
+            rotateX(2deg);
+    }
+
+}
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 250% center;
+    }
+
+}
+
+@keyframes orbOne {
+
+    0%, 100% {
+        transform:
+            translate3d(0, 0, 0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translate3d(30px, -35px, 100px)
+            rotate(180deg);
+    }
+
+}
+
+@keyframes orbTwo {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform:
+            translate3d(-30px, 30px, 80px);
+    }
+
+}
+
+@keyframes orbThree {
+
+    0%, 100% {
+        transform:
+            translate3d(0, 0, 0);
+    }
+
+    50% {
+        transform:
+            translate3d(-40px, -25px, 100px);
+    }
+
+}
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    .team-premium {
+        min-height: 550px;
+        padding: 60px 20px;
+    }
+
+    .team-content h2 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    .team-content p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    .orb-one {
+        left: 5%;
+        width: 55px;
+        height: 55px;
+    }
+
+    .orb-two {
+        right: 8%;
+    }
+
+    .orb-three {
+        right: 5%;
+        width: 45px;
+        height: 45px;
+    }
+
+}
+
+
+
+
+/* =========================
+   TEAM SCROLL ANIMATION
+========================= */
+
+.team-premium {
+    opacity: 0;
+    transform: translateY(100px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.team-premium.team-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+
+
+
+/* =========================
+   NEXT GEN NAVBAR
+========================= */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
+    background: rgba(10, 7, 25, 0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+
+.logo {
+    text-decoration: none;
+    color: #fff;
+
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    background: linear-gradient(90deg, #9b5cff, #d59cff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Navigation */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    position: relative;
+
+    color: #d8d5e3;
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    padding: 8px 0;
+
+    transition: 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #b978ff;
+}
+
+/* Underline */
+
+.nav-link::after {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 0;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        #8f45ff,
+        #d99cff
+    );
+
+    border-radius: 10px;
+
+    transition: 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Get Started */
+
+.get-started {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px 20px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 30px;
+
+    background: linear-gradient(
+        135deg,
+        #7136d9,
+        #a95cff
+    );
+
+    box-shadow: 0 8px 25px rgba(141, 70, 255, 0.25);
+
+    transition: 0.3s ease;
+}
+
+.get-started:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 35px rgba(141, 70, 255, 0.45);
+}
+
+.get-started i {
+    font-size: 12px;
+    transition: 0.3s ease;
+}
+
+.get-started:hover i {
+    transform: translateX(4px);
+}
+
+/* Mobile Button */
+
+.menu-toggle {
+    display: none;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+    color: #fff;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .nav-container {
+        height: 70px;
+    }
+
+    .nav-menu {
+        position: absolute;
+
+        top: 70px;
+        left: 5%;
+
+        width: 90%;
+
+        padding: 25px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 18px;
+
+        background: rgba(15, 10, 35, 0.97);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-15px);
+
+        transition: 0.3s ease;
+    }
+
+    .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-link {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .get-started {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}
+
+
+/* Smaller phones */
+
+@media (max-width: 480px) {
+
+    .nav-container {
+        width: 92%;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-menu {
+        left: 4%;
+        width: 92%;
+    }
+}
+
+/* Navbar default */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+
+    background: transparent;
+    border-bottom: 1px solid transparent;
+
+    transition: all 0.4s ease;
+}
+
+/* Navbar after scrolling */
+.navbar.scrolled {
+    background: rgba(12, 8, 30, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(170, 100, 255, 0.18);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   NEXT GEN — FINAL NAVBAR
+   This block intentionally comes last so it overrides
+   older/duplicate navbar rules.
+========================================================= */
+
+header.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    border-bottom: 1px solid transparent !important;
+    box-shadow: none !important;
+
+    transition:
+        background 0.4s ease,
+        backdrop-filter 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease !important;
+}
+
+header.navbar.scrolled {
+    background: rgba(8, 3, 15, 0.95) !important;
+
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+
+    border-bottom: 1px solid rgba(168, 85, 247, 0.35) !important;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Make sure the navbar content stays above the background */
+header.navbar .nav-container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Mobile menu button */
+header.navbar .menu-toggle {
+    cursor: pointer;
+}
+
+/* =========================================================
+   MOBILE NAVBAR
+========================================================= */
+
+@media (max-width: 768px) {
+
+    header.navbar .nav-menu {
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease,
+            transform 0.3s ease;
+    }
+
+    header.navbar .nav-menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+
+.ngl-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
 }
