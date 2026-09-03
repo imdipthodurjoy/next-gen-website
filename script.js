@@ -339,53 +339,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     // ==========================================
-    // 11. ACTIVE NAVIGATION
-    // ==========================================
+// 11. ACTIVE NAVIGATION ON SCROLL
+// ==========================================
 
-    const sections =
-        document.querySelectorAll("section");
+const sections = document.querySelectorAll(
+    "#about, #services, #projects, #contact"
+);
 
-    const navItems =
-        document.querySelectorAll(".nav-links a");
+const navItems = document.querySelectorAll(".nav-link");
 
-    window.addEventListener("scroll", () => {
+function updateActiveNav() {
 
-        let currentSection = "";
+    let currentSection = "";
 
-        sections.forEach(section => {
+    sections.forEach(section => {
 
-            const sectionTop =
-                section.offsetTop - 150;
+        const sectionTop =
+            section.getBoundingClientRect().top;
 
-            const sectionHeight =
-                section.offsetHeight;
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY <
-                sectionTop + sectionHeight
-            ) {
-
-                currentSection =
-                    section.getAttribute("id");
-            }
-        });
-
-
-        navItems.forEach(link => {
-
-            link.classList.remove("active");
-
-            if (
-                link.getAttribute("href") ===
-                "#" + currentSection
-            ) {
-
-                link.classList.add("active");
-            }
-        });
+        if (sectionTop <= 180) {
+            currentSection = section.getAttribute("id");
+        }
     });
 
+    navItems.forEach(link => {
+
+        link.classList.remove("active");
+
+        const href = link.getAttribute("href");
+
+        if (href === "#" + currentSection) {
+            link.classList.add("active");
+        }
+
+    });
+
+    // Top of page = Home active
+    if (window.scrollY < 100) {
+
+        navItems.forEach(link => {
+            link.classList.remove("active");
+        });
+
+        const home =
+            document.querySelector('.nav-link[href="index.html"]');
+
+        if (home) {
+            home.classList.add("active");
+        }
+    }
+}
+
+window.addEventListener("scroll", updateActiveNav);
+
+updateActiveNav();
 
     // ==========================================
     // 12. 3D HERO CARD
@@ -798,5 +805,245 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     });
+
+});
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const teamSection = document.querySelector(".team-premium");
+
+    if (!teamSection) return;
+
+    const teamContent = teamSection.querySelector(".team-content");
+    const orbs = teamSection.querySelectorAll(".floating-orb");
+
+    const teamObserver = new IntersectionObserver(
+        (entries, observer) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    teamContent.classList.add("team-show");
+
+                    orbs.forEach((orb, index) => {
+                        setTimeout(() => {
+                            orb.classList.add("orb-show");
+                        }, index * 150);
+                    });
+
+                    observer.unobserve(teamSection);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.2
+        }
+    );
+
+    teamObserver.observe(teamSection);
+
+});
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const team = document.querySelector(".team-premium");
+
+    if (!team) {
+        console.log("Team section not found!");
+        return;
+    }
+
+    function showTeam() {
+        const position = team.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+
+        if (position < screenHeight * 0.85) {
+            team.classList.add("team-visible");
+        }
+    }
+
+    window.addEventListener("scroll", showTeam);
+
+    // Page load অবস্থাও check করবে
+    showTeam();
+
+});
+
+
+// =========================
+// MOBILE NAVBAR
+// =========================
+
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+if (menuToggle && navMenu) {
+
+    menuToggle.addEventListener("click", () => {
+
+        navMenu.classList.toggle("active");
+
+        const icon = menuToggle.querySelector("i");
+
+        if (navMenu.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-xmark");
+        } else {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        }
+    });
+
+
+    // Close menu after clicking a link
+    document.querySelectorAll(".nav-link").forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            navMenu.classList.remove("active");
+
+            const icon = menuToggle.querySelector("i");
+
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
+        });
+
+    });
+}
+
+
+
+
+
+
+
+
+
+
+// =========================
+// NAVBAR SCROLL EFFECT
+// =========================
+
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+
+
+// =========================================
+// NAVBAR SCROLL EFFECT
+// =========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navbar = document.querySelector("header.navbar");
+
+    if (!navbar) {
+        console.log("❌ Navbar not found");
+        return;
+    }
+
+    function navbarScroll() {
+
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            console.log("✅ Navbar scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+            console.log("⬆️ Navbar top");
+        }
+
+    }
+
+    // Page load
+    navbarScroll();
+
+    // Scroll
+    window.addEventListener("scroll", navbarScroll);
+
+});
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navbar = document.querySelector("header.navbar");
+
+    if (!navbar) {
+        console.log("❌ Navbar not found");
+        return;
+    }
+
+    function handleNavbarScroll() {
+
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            console.log("✅ Navbar SCROLLED");
+        } else {
+            navbar.classList.remove("scrolled");
+            console.log("⬆️ Navbar TOP");
+        }
+
+    }
+
+    handleNavbarScroll();
+
+    window.addEventListener("scroll", handleNavbarScroll);
+
+});
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navbar = document.querySelector("header.navbar");
+
+    if (!navbar) {
+        console.log("❌ Navbar পাওয়া যায়নি!");
+        return;
+    }
+
+    function updateNavbar() {
+
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+            console.log("✅ Navbar SCROLLED");
+        } else {
+            navbar.classList.remove("scrolled");
+            console.log("⬆️ Navbar TOP");
+        }
+
+    }
+
+    // প্রথমবার page load
+    updateNavbar();
+
+    // Scroll করলে
+    window.addEventListener("scroll", updateNavbar);
 
 });
